@@ -1,0 +1,25 @@
+storagelass:
+---
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: <xxxxxxxxxxxxx>
+parameters:
+  backing_file: </........>
+  overwrite_existing: <false|true default:false>
+  directio: <false|true default:false>
+provisioner: io.openebs.csi-localpv-hackathon
+
+Architecture:
+    Node Plugin with PublishNode capabilites only
+
+Open issues:
+    - container privilege
+        - can we reduce attack surface by using multiple containers
+            1 - csi data path
+            2 - loop device 
+    - rust makedirs for backing file path
+    - backing file:
+        - fail if file already exists
+        - are storage class parameters are passed to NodeUnpublish?
+    - file system volumes
